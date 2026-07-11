@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connect with Natalie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-a: #EDEBFA;
+    --bg-b: #FDEFF6;
+    --blush: #FFC9DC;
+    --blush-deep: #FFB0CC;
+    --mint: #C8F2E4;
+    --plum: #2E2140;
+    --plum-soft: #6B5C82;
+    --white: #FFFFFF;
+    --shadow: rgba(46, 33, 64, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--plum);
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    background:
+      radial-gradient(circle at 15% 10%, var(--bg-b) 0%, transparent 45%),
+      radial-gradient(circle at 85% 90%, var(--mint) 0%, transparent 40%),
+      var(--bg-a);
+    overflow-x: hidden;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    body { animation: bg-settle 1.2s ease-out; }
+  }
+  @keyframes bg-settle {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .card {
+    width: 100%;
+    max-width: 400px;
+    background: var(--white);
+    border-radius: 28px;
+    padding: 28px 24px 32px;
+    box-shadow: 0 20px 60px var(--shadow), 0 2px 8px rgba(46,33,64,0.06);
+    position: relative;
+  }
+
+  /* Photo + tagline block */
+  .profile-block {
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 30px;
+  }
+
+  .photo-wrap {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 20px;
+  }
+
+  .ripple {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--blush-deep);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ripple {
+      animation: ripple-out 1.8s ease-out forwards;
+      opacity: 0;
+    }
+    .ripple.r1 { animation-delay: 0.3s; }
+    .ripple.r2 { animation-delay: 0.55s; }
+  }
+
+  @keyframes ripple-out {
+    0% { transform: scale(0.85); opacity: 0.55; }
+    100% { transform: scale(1.45); opacity: 0; }
+  }
+
+  .photo {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    background: linear-gradient(155deg, var(--blush) 0%, var(--mint) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 3px solid var(--white);
+    box-shadow: 0 6px 18px rgba(46, 33, 64, 0.15);
+  }
+
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%; /* shifts crop down
+    display: none; /* switches on automatically once a real src is set */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none; /* blocks iOS long-press save menu */
+    pointer-events: none; /* blocks right-click + drag on desktop */
+  }
+
+  .photo img[src]:not([src=""]) {
+    display: block;
+  }
+
+  .photo-placeholder {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 500;
+    color: var(--plum);
+    opacity: 0.55;
+  }
+
+  .name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .tagline {
+    font-size: 14.5px;
+    color: var(--plum-soft);
+    line-height: 1.5;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .tagline br {
+    content: "";
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(46, 33, 64, 0.09);
+  }
+  .divider h2 {
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--plum-soft);
+    white-space: nowrap;
+  }
+
+  /* Extra links stack */
+  .links-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .starters-slot {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .starters-slot:empty {
+    display: none;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 13px 16px;
+    background: #FAF9FE;
+    border: 1px solid rgba(46, 33, 64, 0.08);
+    color: var(--plum);
+    text-decoration: none;
+    border-radius: 14px;
+    font-size: 14.5px;
+    font-weight: 500;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .link-btn:focus-visible {
+    outline: 2.5px solid var(--plum);
+    outline-offset: 3px;
+  }
+
+  .link-btn:active {
+    transform: scale(0.98);
+  }
+
+  @media (hover: hover) {
+    .link-btn:hover {
+      background: var(--bg-b);
+    }
+  }
+
+  .link-btn .icon-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: var(--mint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .link-btn .icon-dot svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* LinkedIn's brand blue, used only here so the icon stays recognizable */
+  .icon-dot.linkedin {
+    background: #0A66C2;
+  }
+
+  /* Non-clickable pill, same shape as .link-btn, for conversation starters */
+  .starter-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 13px 16px;
+    background: linear-gradient(155deg, var(--bg-b) 0%, var(--mint) 160%);
+    border: 1px solid rgba(46, 33, 64, 0.06);
+    color: var(--plum);
+    border-radius: 14px;
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .starter-pill .icon-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 26px;
+    font-size: 11.5px;
+    color: var(--plum-soft);
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- Photo + tagline -->
+    <div class="profile-block">
+      <div class="photo-wrap">
+        <div class="ripple r1"></div>
+        <div class="ripple r2"></div>
+        <div class="photo">
+          <img src="NWHeadshot.png" alt="Headshot of Natalie Worden-Cowe" draggable="false" oncontextmenu="return false">
+        </div>
+      </div>
+      <h1 class="name">Natalie Worden-Cowe</h1>
+      <p class="tagline">Software engineer &amp; people person.<br> Passionate about building systems, strengthening collaboration, and driving neuroinclusion in the workplace.</p>
+    </div>
+
+    <div class="divider"><h2>Let's connect</h2></div>
+
+    <!-- Additional links — duplicate .link-btn as needed -->
+    <div class="links-stack">
+      <a href="https://www.linkedin.com/in/nataliewordencowe/" class="link-btn">
+        <span class="icon-dot linkedin" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true" focusable="false">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.558V9h3.556v11.452z"/>
+          </svg>
+        </span>
+        Connect on LinkedIn
+      </a>
+
+      <a href="mailto:nataliepworden@gmail.com" class="link-btn">
+        <span class="icon-dot" aria-hidden="true">✉️</span>
+        Email me
+      </a>
+      <br>
+
+      <div class="divider"><h2>Conversation starters</h2></div>
+
+      <!-- Conversation starter pills are inserted here by script -->
+      <div id="starters-slot" class="starters-slot"></div>
+    </div>
+
+    <p class="footer-note">Tapped via NFC — thanks for saying hi 👋</p>
+
+  </div>
+
+  <script>
+    // Edit this bank freely — add, remove, or rewrite any line.
+    const STARTER_BANK = [
+      "my many previous jobs as a mascot",
+      "my life as a professional horn player",
+      "my cat's 16th birthday gift",
+      "the best piece of career advice I've ever received",
+      "a completely useless skill I'm oddly proud of",
+      "my honest opinion about pineapple on pizza",
+      "what it's like to grow up in a tourist town",
+      "what I've been streaming lately"
+    ];
+
+    const COUNT = 2; // how many starters to show at once
+
+    function pickRandom(arr, n) {
+      const copy = [...arr];
+      const picked = [];
+      for (let i = 0; i < n && copy.length > 0; i++) {
+        const idx = Math.floor(Math.random() * copy.length);
+        picked.push(copy.splice(idx, 1)[0]);
+      }
+      return picked;
+    }
+
+    const slot = document.getElementById('starters-slot');
+    const chosen = pickRandom(STARTER_BANK, COUNT);
+    chosen.forEach(text => {
+      const pill = document.createElement('div');
+      pill.className = 'starter-pill';
+      // role="text" + no href/tabindex keeps this out of the tab order and
+      // read as plain content, not mistaken for an inactive link.
+      pill.setAttribute('role', 'text');
+
+      const icon = document.createElement('span');
+      icon.className = 'icon-dot';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = '💬';
+
+      const label = document.createElement('span');
+      label.textContent = 'Ask me about ' + text;
+
+      pill.appendChild(icon);
+      pill.appendChild(label);
+      slot.appendChild(pill);
+    });
+  </script>
+</body>
+</html>
